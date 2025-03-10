@@ -1,87 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Your Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
     <!-- Landing Page Section -->
     <section id="landing-page">
-        <div class="download-resume">
-            <a href="assets\documents\AaronWellsResume_v2_website.pdf" download>Download Resume</a>
-        </div>
-        
-        <div class="landing-content">
-              <!-- Download Resume Link -->
+      <div class="download-resume">
+        <a href="assets\documents\AaronWellsResume_v2_website.pdf" download
+          >Download Resume</a
+        >
+      </div>
 
-            <img src="assets\pictures\landing_page_pro_pic.jpg" alt="Portfolio Photo" class="landing-image">
-            <h1 class="landing-page-name">Aaron Wells</h1>
-            <!-- Links Row -->
-            <div class="links-row">
-                <a href="#about">About</a> | 
-                <a href="#projects">Projects</a> | 
-                <a href="#contact">Contact</a> | 
-                <a href="#blog">Blog</a> <!-- You can add or modify these links as needed -->
-            </div>
-            <div>
-                <p>Website Views</p>
-            </div>
+      <div class="landing-content">
+        <!-- Download Resume Link -->
 
-            <!-- Scroll Down Arrow -->
-            <div class="scroll-down">
-                <a href="#about">
-                    <span>&#8595;</span> <!-- Down Arrow -->
-                </a>
-            </div>
+        <img
+          src="assets\pictures\landing_page_pro_pic.jpg"
+          alt="Portfolio Photo"
+          class="landing-image"
+        />
+        <h1 class="landing-page-name">Aaron Wells</h1>
+        <!-- Links Row -->
+        <div class="links-row">
+          <a href="#about">About</a> | <a href="#resume">Resume</a> |
+          <a href="#contact">Contact</a>
+          <!-- You can add or modify these links as needed -->
         </div>
+
+        <!-- Social Links Row -->
+        <div class="social-links-row">
+          <a
+            href="https://www.linkedin.com/in/aaron-wells-21192485/"
+            target="_blank"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+
+          <a href="https://github.com/awells2399" target="_blank"
+            ><i class="fab fa-github"></i
+          ></a>
+        </div>
+
+        <div>
+          <p>Website Views</p>
+        </div>
+
+        <!-- Scroll Down Arrow -->
+        <div class="scroll-down">
+          <a href="#about">
+            <span>&#8595;</span>
+            <!-- Down Arrow -->
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Portfolio Page -->
-    <header>
-        
-    </header>
+    <header></header>
 
     <section id="about" class="section">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Hello! I'm a web developer with a passion for building user-friendly websites and web applications. I specialize in HTML, CSS, JavaScript, and more.</p>
-        </div>
+      <div class="container">
+        <h2>About Me</h2>
+        <p>
+          Hello! I'm Aaron Wells, a passionate web developer with a strong
+          background in cybersecurity and cloud technologies. I completed my
+          undergraduate studies in Civil Engineering at Villanova University,
+          where I developed a solid foundation in problem solving and teamwork
+          from playing on the football team. GO Cats! After stumbling upon the
+          television series Mr.Robot, I knew that I wanted to pursue a career in
+          Information Technology/Cybersecurity. YES, I knew "hacking" was not as
+          easy as shown on the show. Long story short, I furthered my education
+          by earning a master’s degree in Cybersecurity from DePaul University.
+        </p>
+        <p>
+          Over the years, I have gained extensive experience in cybersecurity,
+          working on various projects that involved creating test plans, writing
+          scripts to automate processes, running and analyzing static code
+          analysis scans, and installing/configuring new tools. I have created
+          this website to gain experience and further my understanding of cloud
+          technologies for a future in cloud engineering.
+        </p>
+        <p>
+          In addition to my technical skills, I am an avid sports fan. I enjoy
+          following and discussing sports such as football and basketball. My
+          passion for sports and my time as a collegiate athlete has taught me
+          the importance of teamwork, perseverance, and strategic thinking,
+          which I apply to my professional work as well.
+        </p>
+        <p>
+          I am always eager to learn new technologies and take on challenging
+          projects that push the boundaries of my knowledge and skills. Feel
+          free to <a href="#contact" class="reach-out-link">reach out</a> to me
+          about anything. <span class="eagles-fly">FLY EAGLES FLY!</span>
+          <img
+            src="assets/pictures/eagles-icon.png"
+            alt="Eagles Icon"
+            class="eagles-icon"
+          />
+        </p>
+      </div>
     </section>
 
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>Project 1</h3>
-                <p>Project description goes here. A short explanation of what the project is about.</p>
+    <section id="resume" class="section">
+      <div class="container">
+        <h2>Resume</h2>
+        <div class="resume">
+          <h3>Experience</h3>
+          <div class="experience-grid">
+            <div class="experience-item">
+              <p><strong>Agile Defense</strong><br />Operations Analyst Lead</p>
             </div>
-            <div class="project">
-                <h3>Project 2</h3>
-                <p>Project description goes here. A short explanation of what the project is about.</p>
+            <div class="experience-dates">
+              <p>Mar 2024 - Present</p>
             </div>
+
+            <div class="experience-item">
+              <p><strong>Jacobs</strong><br />Cybersecurity Analyst</p>
+            </div>
+            <div class="experience-dates">
+              <p>Mar 2020 - Mar 2024</p>
+            </div>
+
+            <div class="experience-item">
+              <p>
+                <strong>Encompass IT Security Solutions, Inc</strong
+                ><br />Security Analyst Intern
+              </p>
+            </div>
+            <div class="experience-dates">
+              <p>Sep 2018 - Mar 2020</p>
+            </div>
+
+            <div class="experience-item">
+              <p>
+                <strong>Encompass IT Security Solutions, Inc</strong
+                ><br />Security Analyst Intern
+              </p>
+            </div>
+            <div class="experience-dates">
+              <p>Jun 2018 - Aug 2018</p>
+            </div>
+          </div>
+
+          <h3>Education</h3>
+          <div class="education-grid">
+            <div class="education-item">
+              <p>
+                <strong>DePaul University</strong><br />M.S. in Cybersecurity
+              </p>
+            </div>
+            <div class="education-dates">
+              <p>2016 - 2018</p>
+            </div>
+            <div class="education-item">
+              <p>
+                <strong>Villanova University</strong><br />B.S. in Civil
+                Engineering
+              </p>
+            </div>
+            <div class="education-dates">
+              <p>2012 - 2016</p>
+            </div>
+          </div>
+          <h3>Certifications</h3>
+          <div class="certifications-grid">
+            <div class="certification-card">
+              <img
+                src="assets\pictures\SecurityPlus Logo Certified CE.png"
+                alt="Security+ Icon"
+                class="certification-icon"
+              />
+              <div class="certification-details">
+                <p><strong>CompTIA Security+</strong></p>
+                <p>Issued: 2020</p>
+                <a
+                  href="https://www.credly.com/badges/31ffde20-3efe-40c4-acac-6bd04f61a652/public_url"
+                  target="_blank"
+                  >View Credential</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="contact" class="section">
-        <div class="container">
-            <h2>Contact</h2>
-            <p>If you'd like to get in touch, feel free to send me a message.</p>
-            <form action="mailto:alwells239@alwells.live" method="get">
-                <input type="email" name="email" placeholder="Your email" required>
-                <textarea name="message" placeholder="Your message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
+      <div class="container">
+        <h2>Contact</h2>
+        <p>If you'd like to get in touch, feel free to send me a message.</p>
+        <form action="mailto:alwells239@alwells.live" method="get">
+          <input type="email" name="email" placeholder="Your email" required />
+          <textarea
+            name="message"
+            placeholder="Your message"
+            required
+          ></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Your Name. All rights reserved.</p>
-        </div>
+      <div class="container">
+        <p>&copy; 2025 Aaron Wells. All rights reserved.</p>
+      </div>
     </footer>
 
-</body>
+    <div id="dim-background"></div>
+
+    <script>
+      document
+        .querySelector(".eagles-icon")
+        .addEventListener("mouseover", function () {
+          document.getElementById("dim-background").classList.add("show");
+        });
+
+      document
+        .querySelector(".eagles-icon")
+        .addEventListener("mouseout", function () {
+          document.getElementById("dim-background").classList.remove("show");
+        });
+    </script>
+  </body>
 </html>
