@@ -36,3 +36,9 @@ lambda_functions/*.zip
 # Ignore the compiled CSS and JS files if using a preprocessor or bundler
 *.css.map
 *.js.map
+
+# Ignore guide test cases
+guides/
+
+# Ignore Downloaded files from testing
+cypress/downloads/AaronWellsResume_v2_website.pdf
