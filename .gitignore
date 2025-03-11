@@ -1,0 +1,38 @@
+# Node.js dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# AWS Lambda deployment packages
+*.zip
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+
+# Ignore the Lambda function deployment package
+lambda_functions/*.zip
+
+# Ignore the compiled CSS and JS files if using a preprocessor or bundler
+*.css.map
+*.js.map
