@@ -42,3 +42,13 @@ guides/
 
 # Ignore Downloaded files from testing
 cypress/downloads/AaronWellsResume_v2_website.pdf
+
+# Ignore test serverless
+/serverless/sam-app
+
+.terraform/
+*.tfstate
+*.tfstate.backup
+crash.log
+*.tfvars
+*.lock.hcl
