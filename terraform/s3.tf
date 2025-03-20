@@ -9,8 +9,6 @@ resource "aws_s3_bucket" "static_website" {
 
 
 
-
-
 resource "aws_s3_bucket_public_access_block" "static_website" {
   bucket                  = aws_s3_bucket.static_website.id
   block_public_acls       = false
@@ -34,6 +32,8 @@ resource "aws_s3_bucket_policy" "static_website_public_read" {
       }
     ]
   })
+
+  depends_on = [aws_s3_bucket_public_access_block.static_website]
 }
 
 
@@ -58,12 +58,11 @@ resource "aws_s3_object" "css" {
 
 
 resource "aws_s3_object" "source_files" {
-  for_each     = { for file in fileset("../static-website-src", "**/*") : file => file if file != "index.html" || file != "styles.css" }
-  bucket       = aws_s3_bucket.static_website.id
-  key          = each.value
-  source       = "../static-website-src/${each.value}"
-  source_hash  = filemd5("../static-website-src/${each.value}")
-  content_type = lookup(local.mime_types, split(".", each.value)[length(split(".", each.value)) - 1], "application/octet-stream")
+  for_each    = { for file in fileset("../static-website-src", "**/*") : file => file if file != "index.html" || file != "styles.css" }
+  bucket      = aws_s3_bucket.static_website.id
+  key         = each.value
+  source      = "../static-website-src/${each.value}"
+  source_hash = filemd5("../static-website-src/${each.value}")
 }
 
 
