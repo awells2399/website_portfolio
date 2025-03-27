@@ -1,9 +1,15 @@
 // Function to fetch view count from the Lambda function URL
 async function fetchViewCount() {
-  const url =
-    "https://7zen8qi7e3.execute-api.us-east-1.amazonaws.com/Production";
-
   try {
+    // Fetch the configuration file
+    const configResponse = await fetch("config.json");
+    if (!configResponse.ok) {
+      throw new Error(`HTTP error! status: ${configResponse.status}`);
+    }
+    const config = await configResponse.json();
+    const url = config.api_url;
+
+    // Fetch the view count from the API
     const response = await fetch(url, {
       method: "POST",
       headers: {

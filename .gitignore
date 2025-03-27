@@ -1,6 +1,9 @@
 # Node.js dependencies
 node_modules/
 
+# Ignore package-lock.json in npm 5.x or above
+package-lock.json
+
 # Build output
 dist/
 build/
@@ -45,6 +48,9 @@ cypress/downloads/AaronWellsResume_v2_website.pdf
 
 # Ignore test serverless
 /serverless/sam-app
+
+# Ignore cypress downloads
+cypress/downloads/
 
 .terraform/
 *.tfstate
