@@ -40,6 +40,9 @@ lambda_functions/*.zip
 *.css.map
 *.js.map
 
+# Ignore genearted config files
+static-website-src\config.json
+
 # Ignore guide test cases
 guides/
 

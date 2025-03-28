@@ -4,6 +4,10 @@ resource "random_id" "bucket_suffix" {
 
 resource "aws_s3_bucket" "static_website" {
   bucket = "${var.bucket_name}-${random_id.bucket_suffix.hex}"
+
+  tags = merge(var.common_tags, {
+    Name = var.bucket_name
+  })
 }
 
 
@@ -43,6 +47,9 @@ resource "aws_s3_object" "index" {
   source       = "../static-website-src/index.html"
   content_type = "text/html"
   source_hash  = filemd5("../static-website-src/index.html")
+
+  tags       = var.common_tags
+  depends_on = [aws_s3_bucket.static_website, aws_s3_bucket_website_configuration.static_website]
 }
 
 
@@ -52,6 +59,9 @@ resource "aws_s3_object" "css" {
   source       = "../static-website-src/styles.css"
   content_type = "text/css"
   source_hash  = filemd5("../static-website-src/styles.css")
+  tags         = var.common_tags
+
+  depends_on = [aws_s3_bucket.static_website, aws_s3_bucket_website_configuration.static_website]
 }
 
 
@@ -62,6 +72,9 @@ resource "aws_s3_object" "source_files" {
   key         = each.value
   source      = "../static-website-src/${each.value}"
   source_hash = filemd5("../static-website-src/${each.value}")
+  tags        = var.common_tags
+
+  depends_on = [aws_s3_bucket.static_website, aws_s3_bucket_website_configuration.static_website]
 }
 
 

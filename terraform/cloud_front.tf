@@ -1,3 +1,12 @@
+data "aws_acm_certificate" "certificate" {
+  provider    = aws
+  domain      = "*.alwells.live"
+  most_recent = true
+  statuses    = ["ISSUED"]
+
+}
+
+
 resource "aws_cloudfront_distribution" "static_website_distribution" {
   origin {
     domain_name = aws_s3_bucket.static_website.bucket_regional_domain_name
@@ -38,8 +47,13 @@ resource "aws_cloudfront_distribution" "static_website_distribution" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+    # use a datasource to get the ACM certificate ARN
+    acm_certificate_arn      = data.aws_acm_certificate.certificate.arn
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
+
+  aliases = ["alw-cloud-resume.alwells.live"]
 
   tags = {
     Name = "static-website-distribution"
@@ -52,11 +66,4 @@ resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
   comment = "OAI for static website"
 }
 
-output "url" {
-  value = aws_cloudfront_distribution.static_website_distribution.domain_name
-}
 
-output "bucket_regional_domain_name" {
-  value = aws_s3_bucket.static_website.bucket_regional_domain_name
-
-}

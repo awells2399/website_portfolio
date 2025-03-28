@@ -3,11 +3,19 @@ resource "aws_api_gateway_rest_api" "api" {
   description = "API to invoke the get_view_count Lambda function"
 }
 
+###################################################################
+# Resources
+###################################################################
+
 resource "aws_api_gateway_resource" "resource" {
   rest_api_id = aws_api_gateway_rest_api.api.id
   parent_id   = aws_api_gateway_rest_api.api.root_resource_id
   path_part   = "view_count"
 }
+
+###################################################################
+# Methods
+###################################################################
 
 resource "aws_api_gateway_method" "method" {
   rest_api_id   = aws_api_gateway_rest_api.api.id
@@ -23,35 +31,9 @@ resource "aws_api_gateway_method" "options_method" {
   authorization = "NONE"
 }
 
-resource "aws_api_gateway_integration" "options_integration" {
-  rest_api_id = aws_api_gateway_rest_api.api.id
-  resource_id = aws_api_gateway_resource.resource.id
-  http_method = aws_api_gateway_method.options_method.http_method
-  type        = "MOCK"
-
-  request_templates = {
-    "application/json" = "{\"statusCode\": 200}"
-  }
-
-}
-
-resource "aws_api_gateway_integration_response" "options_integration" {
-  rest_api_id = aws_api_gateway_rest_api.api.id
-  resource_id = aws_api_gateway_resource.resource.id
-  http_method = aws_api_gateway_method.options_method.http_method
-  status_code = 200
-
-  response_parameters = {
-    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
-    "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS'"
-    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type'"
-  }
-
-  depends_on = [
-    aws_api_gateway_integration.options_integration,
-    aws_api_gateway_method_response.options_method_response
-  ]
-}
+###################################################################
+# Responses
+###################################################################
 
 resource "aws_api_gateway_method_response" "options_method_response" {
   rest_api_id = aws_api_gateway_rest_api.api.id
@@ -71,8 +53,6 @@ resource "aws_api_gateway_method_response" "options_method_response" {
 }
 
 
-
-
 resource "aws_api_gateway_method_response" "method_response" {
   rest_api_id = aws_api_gateway_rest_api.api.id
   resource_id = aws_api_gateway_resource.resource.id
@@ -86,7 +66,21 @@ resource "aws_api_gateway_method_response" "method_response" {
   }
 }
 
+###################################################################
+# Integrations
+###################################################################
 
+resource "aws_api_gateway_integration" "options_integration" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  resource_id = aws_api_gateway_resource.resource.id
+  http_method = aws_api_gateway_method.options_method.http_method
+  type        = "MOCK"
+
+  request_templates = {
+    "application/json" = "{\"statusCode\": 200}"
+  }
+
+}
 
 resource "aws_api_gateway_integration" "integration" {
   rest_api_id             = aws_api_gateway_rest_api.api.id
@@ -98,6 +92,34 @@ resource "aws_api_gateway_integration" "integration" {
 }
 
 
+###################################################################
+# Integration Responses
+###################################################################
+
+
+resource "aws_api_gateway_integration_response" "options_integration" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  resource_id = aws_api_gateway_resource.resource.id
+  http_method = aws_api_gateway_method.options_method.http_method
+  status_code = 200
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+    "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS'"
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type'"
+  }
+
+  depends_on = [
+    aws_api_gateway_integration.options_integration,
+    aws_api_gateway_method_response.options_method_response
+  ]
+}
+
+
+###################################################################
+# Lambda Permission
+###################################################################
+
 resource "aws_lambda_permission" "api_gateway" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
@@ -105,6 +127,10 @@ resource "aws_lambda_permission" "api_gateway" {
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*/*"
 }
+
+###################################################################
+# Deployments
+###################################################################
 
 resource "aws_api_gateway_deployment" "deployment" {
   depends_on  = [aws_api_gateway_integration.integration, aws_api_gateway_integration.options_integration]
@@ -119,8 +145,5 @@ resource "local_file" "api_config" {
   filename = "${path.module}/../static-website-src/config.json"
 }
 
-output "api_url" {
-  value = "${aws_api_gateway_deployment.deployment.invoke_url}/view_count"
-}
 
 

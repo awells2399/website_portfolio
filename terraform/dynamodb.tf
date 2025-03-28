@@ -9,16 +9,6 @@ resource "aws_dynamodb_table" "view-count-table" {
     name = "website"
     type = "S"
   }
-
-
-  #   replica {
-  #     region_name = "us-east-2"
-  #   }
-
-  #   replica {
-  #     region_name = "us-west-2"
-  #   }
-
 }
 
 resource "aws_dynamodb_table_item" "resume_website" {
