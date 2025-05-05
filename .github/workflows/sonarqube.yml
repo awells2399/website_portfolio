@@ -15,18 +15,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      # Step 2: Set up SonarCloud analysis
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@v2.2.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          args: -Dsonar.projectKey="awells2399_website_portfolio"
+          args: >
+            -Dsonar.projectKey="awells2399_website_portfolio"
             -Dsonar.organization="awells2399"
-            -Dsonar.sources=static-website-src,lambda_functions
+            -Dsonar.sources=static-website-src,lambda_functions,terraform
             -Dsonar.language=js,py
-            -Dsonar.inclusions=**/*.js,**/*.py
+            -Dsonar.inclusions=**/*.js,**/*.py,**/*.tf
             -Dsonar.exclusions=**/node_modules/**,**/__tests__/**,**/venv/**
+            -Dsonar.terraform.file.suffixes=.tf
             -Dsonar.verbose=true
