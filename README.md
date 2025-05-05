@@ -27,6 +27,8 @@ This website is a part of the cloud resume challenge.
 - HTML
 - CSS
 - JavaScript
+- AWS
+- Terraform
 - Cypress
 
 ## Setup

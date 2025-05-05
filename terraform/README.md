@@ -65,6 +65,8 @@ This Terraform configuration deploys the following resources:
 
 ## Prerequisites
 
+...
+
 Before deploying the infrastructure, ensure the following prerequisites are met:
 
 1. **Terraform Installed**:
@@ -96,12 +98,29 @@ Before deploying the infrastructure, ensure the following prerequisites are met:
    - Ensure the static website files (e.g., `index.html`, `styles.css`) are present in the `../static-website-src` directory.
 
 6. **IAM Permissions**:
+
    - The AWS credentials used must have permissions to create the following resources:
      - API Gateway
      - Lambda
      - S3
      - CloudFront
      - DynamoDB
+
+7. **DNS Configuration**:
+
+   - Ensure that your domain provider (e.g., Route 53, GoDaddy, Namecheap) is configured to point your custom domain to the CloudFront distribution.
+   - Add a **CNAME** record for your custom domain (e.g., `alw-cloud-resume.alwells.live`) pointing to the CloudFront distribution's domain name.
+
+   Example CNAME Record:
+
+   - **Name**: `alw-cloud-resume.alwells.live`
+   - **Type**: `CNAME`
+   - **Value**: `<CloudFront Distribution Domain Name>` (e.g., `d123456abcdef.cloudfront.net`)
+
+   - If you are using Route 53, you can use an **Alias Record** instead of a CNAME:
+     - **Name**: `alw-cloud-resume.alwells.live`
+     - **Type**: `A`
+     - **Alias Target**: `<CloudFront Distribution Domain Name>`
 
 ---
 
