@@ -26,10 +26,7 @@ jobs:
           args: -Dsonar.projectKey="awells2399_website_portfolio"
             -Dsonar.organization="awells2399"
             -Dsonar.sources=static-website-src,lambda_functions
-            -Dsonar.tests=lambda_functions/tests
             -Dsonar.language=js,py
             -Dsonar.inclusions=**/*.js,**/*.py
             -Dsonar.exclusions=**/node_modules/**,**/__tests__/**,**/venv/**
-            -Dsonar.javascript.lcov.reportPaths=static-website-src/coverage/lcov.info
-            -Dsonar.python.coverage.reportPaths=lambda_functions/coverage.xml
             -Dsonar.verbose=true
